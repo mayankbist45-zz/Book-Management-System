@@ -1,35 +1,27 @@
 {
   "books": [
     {
-      "title": "Something new",
-      "yop": 2022,
-      "author": "mario",
-      "timesBought": 0,
-      "availableCopies": 7,
-      "id": 4
-    },
-    {
       "title": "My First Blog",
       "yop": 2019,
       "author": "mario",
-      "timesBought": 0,
-      "availableCopies": 12,
+      "timesBought": 1,
+      "availableCopies": 11,
       "id": 1
     },
     {
       "title": "Opening Party!",
       "yop": 1999,
       "author": "yoshi",
-      "timesBought": 0,
-      "availableCopies": 16,
+      "timesBought": 2,
+      "availableCopies": 14,
       "id": 2
     },
     {
       "author": "Mayank",
       "title": "Something",
       "yop": "2021",
-      "availableCopies": 21298,
-      "timesBought": 0,
+      "availableCopies": 21274,
+      "timesBought": 24,
       "id": 7
     }
   ]

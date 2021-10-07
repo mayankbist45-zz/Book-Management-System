@@ -1,10 +1,27 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import useFetch from "../Hooks/useFetch";
 import BookCard from "./BookCard";
 
 const UserLanding = () => {
-    const { data: booksData, isPending } = useFetch('http://localhost:8000/books');
+    const { data, isPending } = useFetch('http://localhost:8000/books');
+    const [booksData, setBooksData] = useState([]);
+
+    useEffect(() => {
+        data.sort((a, b) => a.timesBought - b.timesBought)
+        setBooksData(data);
+    }, [data]);
+
+    const updateBooks = () => {
+        fetch('http://localhost:8000/books')
+            .then((data) => data.json())
+            .then((data) => {
+                data.sort((a, b) => a.timesBought - b.timesBought)
+                setBooksData(data)
+            })
+    }
 
     return (
         <div>
@@ -16,7 +33,7 @@ const UserLanding = () => {
                 </div>
                 <div className="container-2">
                     {isPending && <h2>Loading...</h2>}
-                    {!isPending && booksData.map((book) => <BookCard book={book} key={book.id} />)}
+                    {!isPending && booksData.map((book) => <BookCard book={book} key={book.id} updateBooks={updateBooks} />)}
                 </div>
             </div>
         </div>

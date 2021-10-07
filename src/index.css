@@ -200,7 +200,7 @@ a {
   padding: 0.6em 1em;
   margin-top: 1em;
   background-color: #f1356d;
-  border: none;
+  border: 1px solid #f1356d;
   border-radius: 15px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   font-weight: bold;
@@ -256,6 +256,11 @@ a {
 
 .search-button:hover {
   color: rgb(202, 190, 190);
+}
+
+.button-buy:hover {
+  color: #f1356d;
+  background-color: white;
 }
 
 table {

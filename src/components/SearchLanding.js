@@ -97,6 +97,7 @@ const SearchLanding = () => {
                                 <th>Year of Publication</th>
                                 <th>Available Copies</th>
                                 {usertype === 'admin' && <th>Delete Record</th>}
+                                {usertype === 'user' && <th>Issue Book</th>}
                             </tr>
                         </thead>
                         <tbody>

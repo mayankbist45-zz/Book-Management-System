@@ -16,6 +16,12 @@ const ListBook = (props) => {
         }).then(props.updateTable);
     }
 
+    const issueBook = () => {
+        book.timesBought++;
+        handleDecrease();
+        props.updateBooks();
+    }
+
     const handleDecrease = () => {
         book.availableCopies = Math.max(0, book.availableCopies - 1);
         if (book.availableCopies === 0) {
@@ -47,6 +53,7 @@ const ListBook = (props) => {
                 </div>
             </td>
             {user === 'admin' && <td><button className="delete-record-button" onClick={handleDelete}>Delete</button></td>}
+            {user === 'user' && <td><button className="delete-record-button" onClick={issueBook}>Issue Book</button></td>}
         </tr>
     );
 }
