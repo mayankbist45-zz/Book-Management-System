@@ -1,3 +1,5 @@
+const { REACT_APP_URL } = process.env;
+
 const BookCard = (props) => {
     const { title, yop, author, availableCopies } = props.book;
     const book = props.book;
@@ -11,12 +13,12 @@ const BookCard = (props) => {
     const handleDecrease = () => {
         book.availableCopies = Math.max(0, book.availableCopies - 1);
         if (book.availableCopies === 0) {
-            fetch('http://localhost:8000/books/' + book.id, {
+            fetch(REACT_APP_URL + '/' + book.id, {
                 method: "DELETE",
             }).then(props.updateTable);
         }
         else {
-            fetch('http://localhost:8000/books/' + book.id, {
+            fetch(REACT_APP_URL + '/' + book.id, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

@@ -1,25 +1,29 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import useFetch from "../Hooks/useFetch";
 import BookCard from "./BookCard";
 
+const { REACT_APP_URL } = process.env;
+
 const UserLanding = () => {
-    const { data, isPending } = useFetch('http://localhost:8000/books');
+    const { data, isPending } = useFetch(REACT_APP_URL);
     const [booksData, setBooksData] = useState([]);
 
     useEffect(() => {
-        data.sort((a, b) => a.timesBought - b.timesBought)
-        setBooksData(data);
+        if (data) {
+            data.sort((a, b) => b.timesBought - a.timesBought)
+            setBooksData(data.slice(0, 4));
+        }
     }, [data]);
 
     const updateBooks = () => {
-        fetch('http://localhost:8000/books')
+        fetch(REACT_APP_URL)
             .then((data) => data.json())
             .then((data) => {
-                data.sort((a, b) => a.timesBought - b.timesBought)
-                setBooksData(data)
+                data.sort((a, b) => b.timesBought - a.timesBought)
+                setBooksData(data.slice(0, 4))
             })
     }
 

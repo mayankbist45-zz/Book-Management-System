@@ -1,4 +1,5 @@
 import { useState } from "react";
+const { REACT_APP_URL } = process.env;
 
 const AddBooks = () => {
     const [authorName, setAuthorName] = useState('');
@@ -9,7 +10,7 @@ const AddBooks = () => {
 
     const addRecord = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8000/books', {
+        fetch(REACT_APP_URL, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

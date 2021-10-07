@@ -1,13 +1,14 @@
+const { REACT_APP_URL } = process.env;
+
 const ListBook = (props) => {
     const { book, user } = props;
 
     const handleDelete = () => {
         props.deleteItem(book.id);
     }
-
     const handleIncrease = () => {
         book.availableCopies = book.availableCopies + 1;
-        fetch('http://localhost:8000/books/' + book.id, {
+        fetch(REACT_APP_URL + book.id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -25,12 +26,12 @@ const ListBook = (props) => {
     const handleDecrease = () => {
         book.availableCopies = Math.max(0, book.availableCopies - 1);
         if (book.availableCopies === 0) {
-            fetch('http://localhost:8000/books/' + book.id, {
+            fetch(REACT_APP_URL + book.id, {
                 method: "DELETE",
             }).then(props.updateTable);
         }
         else {
-            fetch('http://localhost:8000/books/' + book.id, {
+            fetch(REACT_APP_URL + book.id, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

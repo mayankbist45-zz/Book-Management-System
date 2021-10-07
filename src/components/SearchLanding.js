@@ -3,9 +3,11 @@ import { useParams } from "react-router";
 import useFetch from "../Hooks/useFetch";
 import ListBook from "./ListBook";
 
+const { REACT_APP_URL } = process.env;
+
 const SearchLanding = () => {
     const { usertype } = useParams();
-    const { data, isPending } = useFetch('http://localhost:8000/books');
+    const { data, isPending } = useFetch(REACT_APP_URL);
     const [booksData, setBooksData] = useState([]);
     const [authorName, setAuthorName] = useState('');
     const [title, setTitle] = useState('');
@@ -30,7 +32,7 @@ const SearchLanding = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:8000/books`)
+        fetch(REACT_APP_URL)
             .then(data => data.json())
             .then(response => {
                 setBooksData(processToRules(response));
@@ -39,16 +41,16 @@ const SearchLanding = () => {
     }
 
     const deleteItem = (id) => {
-        fetch(`http://localhost:8000/books/${id}`, {
+        fetch(REACT_APP_URL + `/${id}`, {
             method: "DELETE"
         })
-            .then(() => fetch('http://localhost:8000/books')
+            .then(() => fetch(REACT_APP_URL)
                 .then((data) => data.json())
                 .then((response) => setBooksData(processToRules(response))))
     }
 
     const updateTable = () => {
-        fetch('http://localhost:8000/books')
+        fetch(REACT_APP_URL)
             .then((data) => data.json())
             .then((response) => setBooksData(processToRules(response)));
     }
