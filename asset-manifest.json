@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Book-Management-System/static/css/main.a1493ca4.chunk.css",
+    "main.js": "/Book-Management-System/static/js/main.296993bb.chunk.js",
+    "main.js.map": "/Book-Management-System/static/js/main.296993bb.chunk.js.map",
+    "runtime-main.js": "/Book-Management-System/static/js/runtime-main.07a1a46d.js",
+    "runtime-main.js.map": "/Book-Management-System/static/js/runtime-main.07a1a46d.js.map",
+    "static/js/2.37a78c44.chunk.js": "/Book-Management-System/static/js/2.37a78c44.chunk.js",
+    "static/js/2.37a78c44.chunk.js.map": "/Book-Management-System/static/js/2.37a78c44.chunk.js.map",
+    "index.html": "/Book-Management-System/index.html",
+    "static/css/main.a1493ca4.chunk.css.map": "/Book-Management-System/static/css/main.a1493ca4.chunk.css.map",
+    "static/js/2.37a78c44.chunk.js.LICENSE.txt": "/Book-Management-System/static/js/2.37a78c44.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.07a1a46d.js",
+    "static/js/2.37a78c44.chunk.js",
+    "static/css/main.a1493ca4.chunk.css",
+    "static/js/main.296993bb.chunk.js"
+  ]
+}
