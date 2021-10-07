@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import Landing from "./components/Landing";
+import UserLanding from "./components/UserLanding";
+import AdminLanding from "./components/AdminLanding";
+import NotFound from "./components/NotFound";
+import SearchLanding from "./components/SearchLanding";
+import AddBooks from "./components/AddBooks";
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route path='/' exact>
+            <Landing />
+          </Route>
+          <Route path='/user'>
+            <UserLanding />
+          </Route>
+          <Route path='/admin'>
+            <AdminLanding />
+          </Route>
+          <Route path='/search/:usertype'>
+            <SearchLanding />
+          </Route>
+          <Route path='/add'>
+            <AddBooks />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
