@@ -13,12 +13,12 @@ const BookCard = (props) => {
     const handleDecrease = () => {
         book.availableCopies = Math.max(0, book.availableCopies - 1);
         if (book.availableCopies === 0) {
-            fetch(REACT_APP_URL + '/' + book.id, {
+            fetch(REACT_APP_URL + '/' + book._id, {
                 method: "DELETE",
             }).then(props.updateTable);
         }
         else {
-            fetch(REACT_APP_URL + '/' + book.id, {
+            fetch(REACT_APP_URL + '/' + book._id, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

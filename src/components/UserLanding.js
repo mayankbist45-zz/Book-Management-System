@@ -37,7 +37,7 @@ const UserLanding = () => {
                 </div>
                 <div className="container-2">
                     {isPending && <h2>Loading...</h2>}
-                    {!isPending && booksData.map((book) => <BookCard book={book} key={book.id} updateBooks={updateBooks} />)}
+                    {!isPending && booksData.map((book) => <BookCard book={book} key={book._id} updateBooks={updateBooks} />)}
                 </div>
             </div>
         </div>

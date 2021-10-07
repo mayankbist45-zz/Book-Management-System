@@ -103,7 +103,7 @@ const SearchLanding = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {booksData.map((book) => <ListBook book={book} user={usertype} key={book.id} deleteItem={deleteItem} updateTable={updateTable} />)}
+                            {booksData.map((book) => <ListBook book={book} user={usertype} key={book._id} deleteItem={deleteItem} updateTable={updateTable} />)}
                         </tbody>
                     </table>
                 }
