@@ -6,39 +6,17 @@ const ListBook = (props) => {
     const handleDelete = () => {
         props.deleteItem(book._id);
     }
+
     const handleIncrease = () => {
-        book.availableCopies = book.availableCopies + 1;
-        fetch(REACT_APP_URL + '/' + book._id, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(book)
-        }).then(props.updateTable);
+        fetch(`${REACT_APP_URL}/increaseBookCopies?id=${book._id}`, { method: "PUT" }).then(props.updateTable);
     }
 
     const issueBook = () => {
-        book.timesBought++;
-        handleDecrease();
-        props.updateTable();
+        fetch(`${REACT_APP_URL}/issueBook?id=${book._id}`, { method: "PUT" }).then(props.updateTable);
     }
 
     const handleDecrease = () => {
-        book.availableCopies = book.availableCopies - 1;
-        if (book.availableCopies === 0) {
-            fetch(REACT_APP_URL + '/' + book._id, {
-                method: "DELETE",
-            }).then(props.updateTable);
-        }
-        else {
-            fetch(REACT_APP_URL + '/' + book._id, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(book)
-            }).then(props.updateTable);
-        }
+        fetch(`${REACT_APP_URL}/decreaseBookCopies?id=${book._id}`, { method: "PUT" }).then(props.updateTable);
     }
 
     return (

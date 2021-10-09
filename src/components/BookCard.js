@@ -5,27 +5,8 @@ const BookCard = (props) => {
     const book = props.book;
 
     const issueBook = () => {
-        book.timesBought++;
-        handleDecrease();
-        props.updateBooks();
-    }
-
-    const handleDecrease = () => {
-        book.availableCopies = Math.max(0, book.availableCopies - 1);
-        if (book.availableCopies === 0) {
-            fetch(REACT_APP_URL + '/' + book._id, {
-                method: "DELETE",
-            }).then(props.updateTable);
-        }
-        else {
-            fetch(REACT_APP_URL + '/' + book._id, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(book)
-            }).then(props.updateTable);
-        }
+        fetch(`${REACT_APP_URL}/issueBook?id=${book._id}`, { method: "PUT" })
+            .then(props.updateBooks);
     }
 
     return (
