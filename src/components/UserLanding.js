@@ -8,22 +8,18 @@ import BookCard from "./BookCard";
 const { REACT_APP_URL } = process.env;
 
 const UserLanding = () => {
-    const { data, isPending } = useFetch(REACT_APP_URL);
+    const { data, isPending } = useFetch(REACT_APP_URL + '/recommendations');
     const [booksData, setBooksData] = useState([]);
 
     useEffect(() => {
-        if (data) {
-            data.sort((a, b) => b.timesBought - a.timesBought)
-            setBooksData(data.slice(0, 4));
-        }
+        if (data) setBooksData(data);
     }, [data]);
 
     const updateBooks = () => {
-        fetch(REACT_APP_URL)
+        fetch(REACT_APP_URL + '/recommendations')
             .then((data) => data.json())
             .then((data) => {
-                data.sort((a, b) => b.timesBought - a.timesBought)
-                setBooksData(data.slice(0, 4))
+                setBooksData(data)
             })
     }
 
