@@ -11,38 +11,32 @@ const SearchLanding = () => {
     const [booksData, setBooksData] = useState([]);
     const [authorName, setAuthorName] = useState('');
     const [title, setTitle] = useState('');
-    const [startP, setStartP] = useState(0);
-    const [startE, setStartE] = useState(9999);
+    const [startP, setStartP] = useState('');
+    const [startE, setStartE] = useState('');
 
     const generateUrl = () => {
         // use axios later 
-        return `${REACT_APP_URL}/search?authorName=${authorName}&title=${title}&startP=${startP}&startE=${startE}`;
+        return `${REACT_APP_URL}/search?authorName=${authorName}&title=${title}&startP=${startP === '' ? 0 : startP}&startE=${startE === '' ? Number.MAX_SAFE_INTEGER : startE}`;
     }
 
     const handleSearch = (e) => {
         e.preventDefault();
-        fetch(generateUrl())
-            .then(data => data.json())
-            .then(response => {
-                console.log(response);
-                setBooksData(response);
-            });
-
+        updateTable();
     }
 
     const deleteItem = (id) => {
         fetch(REACT_APP_URL + `/${id}`, {
             method: "DELETE"
-        })
-            .then(() => fetch(generateUrl())
-                .then((data) => data.json())
-                .then((response) => setBooksData(response)))
+        }).then(updateTable);
     }
 
     const updateTable = () => {
         fetch(generateUrl())
             .then((data) => data.json())
-            .then((response) => setBooksData(response));
+            .then((response) => {
+                console.log(response);
+                setBooksData(response)
+            });
     }
 
     useEffect(() => {
