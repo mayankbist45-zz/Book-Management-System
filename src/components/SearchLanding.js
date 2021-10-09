@@ -14,28 +14,18 @@ const SearchLanding = () => {
     const [startP, setStartP] = useState(0);
     const [startE, setStartE] = useState(9999);
 
-    const processToRules = (response) => {
-        const updatedBooks = [];
-        response.forEach((book) => {
-            if (title === '' || book.title.toUpperCase() === title.toUpperCase()) {
-                if (authorName === '' || book.author.toUpperCase() === authorName.toUpperCase()) {
-                    if (startP <= book.yop) {
-                        if (startE >= book.yop) {
-                            updatedBooks.push(book);
-                        }
-                    }
-                }
-            }
-        })
-        return updatedBooks;
+    const generateUrl = () => {
+        // use axios later 
+        return `${REACT_APP_URL}/search?authorName=${authorName}&title=${title}&startP=${startP}&startE=${startE}`;
     }
 
     const handleSearch = (e) => {
         e.preventDefault();
-        fetch(REACT_APP_URL)
+        fetch(generateUrl())
             .then(data => data.json())
             .then(response => {
-                setBooksData(processToRules(response));
+                console.log(response);
+                setBooksData(response);
             });
 
     }
@@ -44,15 +34,15 @@ const SearchLanding = () => {
         fetch(REACT_APP_URL + `/${id}`, {
             method: "DELETE"
         })
-            .then(() => fetch(REACT_APP_URL)
+            .then(() => fetch(generateUrl())
                 .then((data) => data.json())
-                .then((response) => setBooksData(processToRules(response))))
+                .then((response) => setBooksData(response)))
     }
 
     const updateTable = () => {
-        fetch(REACT_APP_URL)
+        fetch(generateUrl())
             .then((data) => data.json())
-            .then((response) => setBooksData(processToRules(response)));
+            .then((response) => setBooksData(response));
     }
 
     useEffect(() => {
